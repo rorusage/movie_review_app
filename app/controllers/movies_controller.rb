@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
   def index
-    flash[:alert] = "Success"
+    @movies = Movie.all
   end
 
   def new
@@ -16,6 +16,10 @@ class MoviesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @movie = Movie.find(params[:id])
   end
 
   private

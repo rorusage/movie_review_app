@@ -1,0 +1,11 @@
+= simple_form_for @movie do |f|
+  .row
+    .col-md-6
+      = image_tag @movie.image.medium.url.to_s
+      %h3= @movie.title
+      %p= @movie.description
+      %h5 Average rating :
+      %hr
+      %h5 Release date : #{@movie.release_date}
+      %hr
+      %h5 Director : #{@movie.director}
