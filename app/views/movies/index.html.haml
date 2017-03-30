@@ -2,8 +2,11 @@
   - @movies.each_slice(3) do |movies|
     .row
       - movies.each do |movie|
-        = image_tag movie.image.thumb.url.to_s
-        %h4= link_to movie.title, movie
+        .col-md-4
+          = image_tag movie.image.thumb.url.to_s
+          %h4= link_to movie.title, movie
+          - if movie.editable_by?(current_user)
+            =link_to "Edit", edit_movie_path(movie)
     %br
 
 

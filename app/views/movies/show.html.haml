@@ -1,11 +1,13 @@
-= simple_form_for @movie do |f|
-  .row
-    .col-md-6
-      = image_tag @movie.image.medium.url.to_s
-      %h3= @movie.title
-      %p= @movie.description
-      %h5 Average rating :
-      %hr
-      %h5 Release date : #{@movie.release_date}
-      %hr
-      %h5 Director : #{@movie.director}
+.row
+  .col-md-6
+    = image_tag @movie.image.medium.url.to_s
+    %h3= @movie.title
+    - if @movie.editable_by?(current_user)
+      =link_to "Edit", edit_movie_path(@movie), class: "btn btn-primary"
+    %p= @movie.description
+    %h5 Average rating :
+    %hr
+    %h5 Release date : #{@movie.release_date}
+    %hr
+    %h5 Director : #{@movie.director}
+

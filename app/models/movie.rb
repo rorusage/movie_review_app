@@ -7,4 +7,8 @@ class Movie < ActiveRecord::Base
   validates :rating, presence: true
   validates :image, presence: true
   mount_uploader :image, ImageUploader
+
+  def editable_by?(user)
+    user == user
+  end
 end
