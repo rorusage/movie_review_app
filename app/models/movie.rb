@@ -8,6 +8,10 @@ class Movie < ActiveRecord::Base
   validates :image, presence: true
   mount_uploader :image, ImageUploader
 
+  searchable do
+    string :title
+  end
+
   def editable_by?(user)
     user == user
   end
