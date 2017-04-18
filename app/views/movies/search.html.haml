@@ -1,0 +1,14 @@
+.col-md-12
+  %h1 Search result
+  - @movies.each_slice(3) do |movies|
+    .row
+      - movies.each do |movie|
+        .col-md-4
+          = image_tag movie.image.thumb.url.to_s
+          %h4= link_to movie.title, movie
+          - if movie.editable_by?(current_user)
+            =link_to "Edit", edit_movie_path(movie)
+            =link_to "Delete", movie_path(movie), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+    %br
+
+

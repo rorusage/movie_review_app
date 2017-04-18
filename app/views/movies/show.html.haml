@@ -1,14 +1,40 @@
 .row
   .col-md-6
     = image_tag @movie.image.medium.url.to_s
+    %h4 Average rating : #{@movie.average_raty}
+    .star-rating{"data-score" => "#{@movie.average_raty}" }
+    %h5 #{@movie.comments_count} Reviewers
+    %hr
+    %h4 Release date : #{@movie.release_date}
+    %hr
+    %h4 Director : #{@movie.director}
+    %br
+    %h3 Write a Comment
+    %br
+    = link_to("Comment", new_movie_comment_path(@movie), class: "btn btn-primary")
+
+  .col-md-6
     %h3= @movie.title
     - if @movie.editable_by?(current_user)
       =link_to "Edit", edit_movie_path(@movie), class: "btn btn-primary"
       =link_to "Delete", movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
     %p= @movie.description
-    %h5 Average rating :
     %hr
-    %h5 Release date : #{@movie.release_date}
-    %hr
-    %h5 Director : #{@movie.director}
+
+    - @comments.each do |c|
+      .star-rating{"data-score" => "#{c.raty}" }
+      %br
+      = c.comment
+      %hr
+
+:javascript
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    }
+  });
+
+
 

@@ -10,6 +10,6 @@
       = f.input :description, input_html: {class: "form-control"}
       = f.input :director, input_html: {class: "form-control"}
       = f.input :release_date, input_html: {class: "form-control"}
-      = f.input :rating, input_html: {class: "form-control"}
+      = f.input :rating, collection: ["G", "PG", "PG-13", "R", "NC-17"], input_html: {class: "form-control"}
     = f.submit "Submit", class: "btn btn-primary", data: {disable_with: "Submitting..."}
 
