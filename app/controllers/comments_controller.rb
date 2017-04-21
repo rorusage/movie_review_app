@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @movie = Movie.find(params[:movie_id])
     @comment = @movie.comments.new

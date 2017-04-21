@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:index, :show]
   def index
     @movies = Movie.all
   end
@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = current_user.movies.new(movie_params)
+    @movie = current_user.movies.build(movie_params)
 
     if @movie.save
       redirect_to movies_path, notice: "新增電影成功！"

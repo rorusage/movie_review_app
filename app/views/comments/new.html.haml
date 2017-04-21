@@ -4,7 +4,14 @@
 
   = simple_form_for [@movie, @comment] do |f|
     .form-group
-      = f.input :raty, input_html: {class: "from-control"}
+      -# = f.input :raty, input_html: {class: "from-control"}
+      %h5 Raty :
+      #star-rating
       = f.input :comment, input_html: {class: "from-control"}
     = f.submit "Submit", class: "btn btn-primary", data: {disable_with: "Submitting..."}
 
+:javascript
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'comment[raty]'
+  });

@@ -21,11 +21,14 @@
     %p= @movie.description
     %hr
 
-    - @comments.each do |c|
-      .star-rating{"data-score" => "#{c.raty}" }
-      %br
-      = c.comment
-      %hr
+    - if @comments.blank?
+      %h3 There is no comment yet, want to be first?
+    - else
+      - @comments.each do |c|
+        .star-rating{"data-score" => "#{c.raty}" }
+        %br
+        = c.comment
+        %hr
 
 :javascript
   $('.star-rating').raty({

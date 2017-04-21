@@ -1,9 +1,13 @@
 .col-md-12
+  - if !user_signed_in?
+    .jumbotron
+      %p
+        Please Sign_up or log_in to give a comment!
   - @movies.each_slice(3) do |movies|
     .row
       - movies.each do |movie|
         .col-md-4
-          = image_tag movie.image.thumb.url.to_s
+          = link_to((image_tag movie.image.thumb.url.to_s, class: 'image'), movie)
           %h4= link_to movie.title, movie
           - if movie.editable_by?(current_user)
             =link_to "Edit", edit_movie_path(movie)
