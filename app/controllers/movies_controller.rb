@@ -42,6 +42,14 @@ class MoviesController < ApplicationController
     @movie.destroy
     redirect_to movies_path, alert: "刪除成功！"
   end
+
+  def search
+    if params[:search].present?
+      @movies = Movie.search(params[:search])
+    else
+      @movie.all
+    end
+  end
   private
 
   def movie_params
